@@ -9,7 +9,9 @@ const Layout: FC = ({ children }) => {
 		<div className={styles.layout}>
 			<Navigation />
 			<div className={styles.center}>{children}</div>
+			<div className={styles.footer}>Made with ❤️ by <a  target='_blank' rel='noreferrer' href='https://telegram.me/faershtein1337'> Faershtein Daniil</a></div>
 			<Sidebar />
+
 		</div>
 	);
 };

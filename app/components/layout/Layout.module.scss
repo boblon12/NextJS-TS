@@ -22,4 +22,17 @@ $bar-width: 20%;
         @apply min-h-screen p-layout;
         margin: 0 $bar-width;
     }
+
+    .footer {
+        @apply flex justify-center items-center text-lg;
+
+        a {
+            @apply text-primary ml-2 transition-colors;
+        }
+
+        a:hover {
+            @apply text-gray-600
+        }
+
+    }
 }
