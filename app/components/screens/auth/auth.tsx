@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import { FC, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -8,6 +9,8 @@ import Heading from '@/components/ui/heading/Heading';
 import { useAuth } from '@/hooks/useAuth';
 
 import { Meta } from '@/utils/meta';
+
+import { useActions } from '../../../hooks/useActions';
 
 import styles from './Auth.module.scss';
 import { IAuthInput } from './auth.interface';
@@ -20,6 +23,8 @@ const Auth: FC = () => {
 
 	const [type, setType] = useState<'login' | 'register'>('login');
 
+	const { login, register } = useActions();
+
 	const {
 		register: registerInput,
 		handleSubmit,
@@ -28,13 +33,6 @@ const Auth: FC = () => {
 	} = useForm<IAuthInput>({
 		mode: 'onChange',
 	});
-
-	const login = (data: any) => {
-		console.table({ data });
-	};
-	const register = (data: any) => {
-		console.table({ data });
-	};
 
 	const onSubmit: SubmitHandler<IAuthInput> = (data) => {
 		if (type === 'login') login(data);
@@ -47,7 +45,12 @@ const Auth: FC = () => {
 			<section className={styles.wrapper}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Heading title="Auth" className="mb-6" />
-					<AuthFields register={registerInput} formState={formState} />
+					<AuthFields
+						register={registerInput}
+						// @ts-ignore: Unreachable code error
+						formState={formState}
+						isPasswordRequired={true}
+					/>
 					<div className={styles.buttons}>
 						<Button
 							type="submit"

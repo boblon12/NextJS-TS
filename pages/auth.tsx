@@ -1,6 +1,8 @@
-import Auth from '@/components/screens/auth/auth';
+import { NextPage } from 'next';
 
-const AuthPage = () => {
+import Auth from '@/components/screens/auth/Auth';
+
+const AuthPage: NextPage = () => {
 	return <Auth />;
 };
 

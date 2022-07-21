@@ -1,7 +1,6 @@
 {
 	"name": "front",
-	"version": "0.1.0",
-	"description": "Faershitein Cinema Application",
+	"description": "Cinema application",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
@@ -35,7 +34,7 @@
 		"react-select": "^5.2.2",
 		"react-star-rating-component": "^1.4.1",
 		"react-transition-group": "^4.4.2",
-		"sass": "^1.49.0",
+		"sass": "^1.53.0",
 		"string-strip-html": "^9.1.6"
 	},
 	"devDependencies": {
