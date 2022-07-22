@@ -11,10 +11,10 @@ const Menu: FC<{ menu: IMenu }> = ({ menu: { items, title } }) => {
 		<div className={styles.menu}>
 			<div className={styles.heading}>{title}</div>
 			<ul className={styles.ul}>
-				{title === 'General' ? <AuthItems /> : null}
 				{items.map((item) => (
 					<MenuItem key={item.link} item={item} />
 				))}
+				{title === 'General' ? <AuthItems /> : null}
 			</ul>
 		</div>
 	);
