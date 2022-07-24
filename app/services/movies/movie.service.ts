@@ -1,3 +1,4 @@
+import axios from 'api/interseptors';
 import { axiosClassic } from 'api/interseptors';
 
 import { IMovie } from '@/shared/types/movies.types';
@@ -20,5 +21,19 @@ export const MovieService = {
 		);
 
 		return movies;
+	},
+
+	async delete(_id: string) {
+		return axios.delete<string>(getMoviesUrl(`/${_id}`));
+	},
+
+	async getMovies(searchTerm?: string) {
+		return axiosClassic.get<IMovie[]>(getMoviesUrl(``), {
+			params: searchTerm
+				? {
+						searchTerm,
+				  }
+				: {},
+		});
 	},
 };

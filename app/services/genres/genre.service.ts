@@ -1,3 +1,4 @@
+import axios from 'api/interseptors';
 import { axiosClassic } from 'api/interseptors';
 
 import { IGenre } from '@/shared/types/movies.types';
@@ -13,5 +14,9 @@ export const GenreService = {
 				  }
 				: {},
 		});
+	},
+
+	async delete(_id: string) {
+		return axios.delete<string>(getGenresUrl(`/${_id}`));
 	},
 };
