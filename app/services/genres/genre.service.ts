@@ -1,6 +1,10 @@
 import axios from 'api/interseptors';
 import { axiosClassic } from 'api/interseptors';
 
+
+
+import { IGenreEditInput } from '@/components/screens/admin/genre/genre-edit.interface';
+
 import { IGenre } from '@/shared/types/movies.types';
 
 import { getGenresUrl } from '@/configs/api.config';
@@ -16,7 +20,15 @@ export const GenreService = {
 		});
 	},
 
+	async getById(_id: string) {
+		return axios.get<IGenreEditInput>(getGenresUrl(`/${_id}`));
+	},
+
 	async delete(_id: string) {
 		return axios.delete<string>(getGenresUrl(`/${_id}`));
+	},
+
+	async update(_id: string, data: IGenreEditInput) {
+		return axios.put<string>(getGenresUrl(`/${_id}`), data);
 	},
 };
