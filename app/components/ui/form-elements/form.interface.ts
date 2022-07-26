@@ -1,13 +1,14 @@
 import { ButtonHTMLAttributes, InputHTMLAttributes } from 'react';
-import { FieldErrors } from 'react-hook-form';
+import { FieldError } from 'react-hook-form';
+
 
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export interface IFieldProps {
 	placeholder: string;
-	error?: FieldErrors | undefined;
+	error?: FieldError | undefined;
 }
 
-type InputPropsField = InputHTMLAttributes<HTMLInputElement> & IFieldProps;
+type TypeInputPropsField = InputHTMLAttributes<HTMLInputElement> & IFieldProps;
 
-export interface IField extends InputPropsField {}
+export interface IField extends TypeInputPropsField {}
