@@ -1,7 +1,7 @@
+import dynamic from 'next/dynamic';
 import { FC } from 'react';
-import { useForm } from 'react-hook-form';
-
-
+import { Controller, useForm } from 'react-hook-form';
+import { stripHtml } from 'string-strip-html';
 
 import formStyles from '@/components/shared/admin/adminForm.module.scss';
 import AdminNavigation from '@/components/ui/admin-navigation/AdminNavigation';
@@ -10,20 +10,17 @@ import Field from '@/components/ui/form-elements/Field';
 import SlugField from '@/components/ui/form-elements/SlugField/SlugField';
 import SkeletonLoader from '@/components/ui/skeleton-loader/SkeletonLoader';
 
-
-
 import Heading from '@/ui/heading/Heading';
-
-
 
 import { Meta } from '@/utils/meta';
 import generateSlug from '@/utils/string/generateSlug';
 
-
-
 import { IGenreEditInput } from './genre-edit.interface';
 import { useGenreEdit } from './useGenreEdit';
 
+const DynamicTextEditor = dynamic(() => import('@/ui/TextEditor/TextEditor'), {
+	ssr: false,
+});
 
 const GenreEdit: FC = () => {
 	const {
@@ -78,6 +75,30 @@ const GenreEdit: FC = () => {
 								style={{ width: '31%' }}
 							/>
 						</div>
+
+						<Controller
+							name="description"
+							control={control}
+							defaultValue=""
+							render={({
+								field: { value, onChange },
+								fieldState: { error },
+							}) => (
+								<DynamicTextEditor
+									placeholder="Description"
+									onChange={onChange}
+									error={error}
+									value={value}
+								/>
+							)}
+							rules={{
+								validate: {
+									required: (v) =>
+										(v && stripHtml(v).result.length > 0) ||
+										'Description is required!',
+								},
+							}}
+						/>
 						<Button>Submit</Button>
 					</>
 				)}

@@ -16,7 +16,10 @@
                 }
 
                 &::before {
-                    @apply absolute w-full h-0.5 bg-transparent transition-colors left-0 bottom-0 rounded-md;
+                    @apply absolute h-0.5 bg-transparent transition-colors left-0 bottom-0 rounded-md;
+                    width: calc(100% - 30px);
+
+                    left: 15px;
                     content: '';
                 }
 
@@ -24,7 +27,8 @@
                     @apply text-opacity-100;
 
                     &::before {
-                        @apply bg-primary;
+                        @apply bg-primary transition-colors;
+
                     }
                 }
             }

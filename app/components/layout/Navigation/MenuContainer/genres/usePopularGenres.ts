@@ -1,9 +1,14 @@
 import { useQuery } from 'react-query';
 
+
+
 import { getGenreUrl } from '@/configs/url.config';
+
+
 
 import { GenreService } from '../../../../../services/genres/genre.service';
 import { IMenuItem } from '../menu.types';
+
 
 export const usePopularGenres = () => {
 	const queryData = useQuery(
@@ -12,6 +17,7 @@ export const usePopularGenres = () => {
 		{
 			select: ({ data }) =>
 				data
+					.filter((genre) => genre.icon)
 					.map(
 						(genre): IMenuItem =>
 							({
