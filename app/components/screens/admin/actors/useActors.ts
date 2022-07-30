@@ -35,6 +35,22 @@ export const useActors = () => {
 		}
 	);
 
+	const { push } = useRouter()
+
+	const { mutateAsync: createAsync } = useMutation(
+		'create actor',
+		() => ActorService.create(),
+		{
+			onError(error) {
+				toastError(error, 'Create actor')
+			},
+			onSuccess({ data: _id }) {
+				toastr.success('Create actor', 'create was successful')
+				push(getAdminUrl(`actor/edit/${_id}`))
+			},
+		}
+	)
+
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value);
 	};
@@ -59,7 +75,8 @@ export const useActors = () => {
 			...queryData,
 			searchTerm,
 			deleteAsync,
+			createAsync
 		}),
-		[queryData, searchTerm, deleteAsync]
+		[queryData, searchTerm, deleteAsync, createAsync]
 	);
 };
