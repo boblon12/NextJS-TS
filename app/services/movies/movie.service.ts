@@ -1,5 +1,7 @@
 import axios, { axiosClassic } from 'api/interseptors';
 
+
+
 import { IMovieEditInput } from '@/components/screens/admin/movie/movie-edit.interface';
 
 import { IMovie } from '@/shared/types/movies.types';
@@ -32,7 +34,10 @@ export const MovieService = {
 	},
 
 	async update(_id: string, data: IMovieEditInput) {
-		return axios.put<string>(getMoviesUrl(`/${_id}`), data);
+		return axios.put<string>(getMoviesUrl(`/${_id}`), {
+			...data,
+			isSendTelegram: true,
+		});
 	},
 
 	async delete(_id: string) {

@@ -57,6 +57,20 @@ export const useMovies = () => {
 			},
 		}
 	);
+	const {push} = useRouter()
+	const { mutateAsync: createAsync } = useMutation(
+		'create movie',
+		() => MovieService.create(),
+		{
+			onError(error) {
+				toastError(error, 'Create movie')
+			},
+			onSuccess({ data: _id }) {
+				toastr.success('Create movie', 'create was successful')
+				push(getAdminUrl(`movie/edit/${_id}`))
+			},
+		}
+	)
 
 	return useMemo(
 		() => ({
@@ -64,7 +78,8 @@ export const useMovies = () => {
 			...queryData,
 			searchTerm,
 			deleteAsync,
+			createAsync
 		}),
-		[queryData, searchTerm, deleteAsync]
+		[queryData, searchTerm, deleteAsync, createAsync]
 	);
 };

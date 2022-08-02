@@ -2,6 +2,7 @@ export interface ITableItem {
 	_id: string;
 	editUrl: string;
 	items: string[];
+	email: string;
 }
 
 export interface IAdminTableItem {

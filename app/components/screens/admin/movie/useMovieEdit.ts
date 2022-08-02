@@ -3,6 +3,8 @@ import { SubmitHandler, UseFormSetValue } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import { toastr } from 'react-redux-toastr';
 
+
+
 import { MovieService } from '@/services/movies/movie.service';
 
 import { toastError } from '@/utils/api/withToastErrorRedux';
@@ -48,8 +50,9 @@ export const useMovieEdit = (setValue: UseFormSetValue<IMovieEditInput>) => {
 	);
 
 	const onSubmit: SubmitHandler<IMovieEditInput> = async (data) => {
+		data = { ...data, isSendTelegram: true };
 		await mutateAsync(data);
 	};
 
 	return { onSubmit, isLoading };
-};
+};;

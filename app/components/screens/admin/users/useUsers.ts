@@ -2,11 +2,19 @@ import { ChangeEvent, useMemo, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { toastr } from 'react-redux-toastr';
 
+
+
 import { useDebounce } from '@/hooks/useDebounce';
+
+
 
 import { UserService } from '@/services/user/user.service';
 
+
+
 import { toastError } from '@/utils/api/withToastErrorRedux';
+
+
 
 import { getAdminUrl } from '@/configs/url.config';
 
@@ -26,7 +34,12 @@ export const useUsers = () => {
 					(user): ITableItem => ({
 						_id: user._id,
 						editUrl: getAdminUrl(`/user/edit/${user._id}`),
-						items: [user.email, convertMongoDate(user.createdAt)],
+						items: [
+							user.email,
+							convertMongoDate(user.createdAt),
+							String(user.isAdmin),
+						],
+						email: user.email,
 					})
 				),
 			onError(error) {

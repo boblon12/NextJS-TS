@@ -1,6 +1,8 @@
 import { ChangeEvent, ChangeEventHandler, FC, useState } from 'react';
 import { useQuery } from 'react-query';
 
+
+
 import SearchField from '@/components/ui/search-field/SearchField';
 
 import { useDebounce } from '@/hooks/useDebounce';
@@ -15,7 +17,7 @@ const Search: FC = () => {
 	const debouncedSearch = useDebounce(searchTerm, 500);
 	const { isSuccess, data: popularMovies } = useQuery(
 		['search movie list', debouncedSearch],
-		() => MovieService.getAll(debouncedSearch),
+		() => MovieService.getMovies(debouncedSearch),
 		{
 			select: ({ data }) => data,
 			enabled: !!debouncedSearch,

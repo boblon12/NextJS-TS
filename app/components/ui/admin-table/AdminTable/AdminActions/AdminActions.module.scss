@@ -13,3 +13,9 @@
         }
     }
 }
+.disabled {
+    >button {
+        @apply text-transparent;
+    }
+
+}

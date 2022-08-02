@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { stripHtml } from 'string-strip-html';
 
 import formStyles from '@/components/shared/admin/adminForm.module.scss';
 
@@ -21,6 +22,9 @@ import { useAdminGenres } from './useAdminGenres';
 import { useMovieEdit } from './useMovieEdit';
 
 const DynamicSelect = dynamic(() => import('@/ui/select/Select'), {
+	ssr: false,
+});
+const DynamicTextEditor = dynamic(() => import('@/ui/TextEditor/TextEditor'), {
 	ssr: false,
 });
 
@@ -188,7 +192,26 @@ const MovieEdit: FC = () => {
 							}}
 						/>
 					</div>
-
+					<Controller
+						name="description"
+						control={control}
+						defaultValue=""
+						render={({ field: { value, onChange }, fieldState: { error } }) => (
+							<DynamicTextEditor
+								placeholder="Description"
+								onChange={onChange}
+								error={error}
+								value={value}
+							/>
+						)}
+						rules={{
+							validate: {
+								required: (v) =>
+									(v && stripHtml(v).result.length > 0) ||
+									'Description is required!',
+							},
+						}}
+					/>
 					<Button>Update</Button>
 				</form>
 			)}

@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
@@ -8,15 +9,24 @@ import styles from './AdminActions.module.scss';
 interface IAdminActions {
 	editUrl: string;
 	removeHandler: () => void;
+	disable?: boolean;
 }
-const AdminActions: FC<IAdminActions> = ({ editUrl, removeHandler }) => {
+const AdminActions: FC<IAdminActions> = ({
+	editUrl,
+	removeHandler,
+	disable,
+}) => {
 	const { push } = useRouter();
 	return (
-		<div className={styles.actions}>
-			<button onClick={() => push(editUrl)}>
+		<div
+			className={cn(styles.actions, {
+				[styles.disabled]: disable === true,
+			})}
+		>
+			<button disabled={disable} onClick={() => push(editUrl)}>
 				<MaterialIcon name="MdEdit" />
 			</button>
-			<button onClick={removeHandler}>
+			<button disabled={disable} onClick={removeHandler}>
 				<MaterialIcon name="MdClose" />
 			</button>
 		</div>

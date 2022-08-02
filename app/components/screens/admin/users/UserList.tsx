@@ -26,7 +26,7 @@ const UserList: FC = () => {
 				removeHandler={deleteAsync}
 				tableItems={data || []}
 				isLoading={isLoading}
-				headerItems={['Email', 'Register at']}
+				headerItems={['Email', 'Register at', 'Admin']}
 			/>
 		</Meta>
 	);
