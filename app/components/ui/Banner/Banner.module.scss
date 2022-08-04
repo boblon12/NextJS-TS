@@ -1,0 +1,10 @@
+@import '../../../assets/styles/_variables.scss';
+
+.banner {
+    @apply relative overflow-hidden w-full rounded-layout shadow-lg flex flex-col justify-end;
+    @include fade-bg-gradient();
+}
+
+.banner {
+    height: 420px
+}

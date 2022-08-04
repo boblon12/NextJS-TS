@@ -6,13 +6,16 @@ import type { GetStaticProps, NextPage } from 'next';
 import Home from '@/components/screens/home/Home';
 import { ISlide } from '@/components/ui/slider/slider.types';
 
+
+
 import { ActorService } from '@/services/actor/actor.service';
 import { MovieService } from '@/services/movies/movie.service';
 
+
+
 import { getGenresList } from '@/utils/movie/GetGenresList';
 
-import { getActorsUrl } from '@/configs/api.config';
-import { getMovieUrl } from '@/configs/url.config';
+import { getActorUrl, getMovieUrl } from '@/configs/url.config';
 
 import { IHome } from '../app/components/screens/home/home.interface';
 import { IGalleryItem } from '../app/components/ui/galery/gallery.interface';
@@ -41,7 +44,7 @@ export const getStaticProps: GetStaticProps = async () => {
 		const actors: IGalleryItem[] = dataActors.slice(0, 12).map((a) => ({
 			name: a.name,
 			posterPath: a.photo,
-			url: getActorsUrl(a.slug),
+			url: getActorUrl(a.slug),
 			content: {
 				title: a.name,
 				subTitle: `${a.countMovies} movies`,
@@ -54,7 +57,7 @@ export const getStaticProps: GetStaticProps = async () => {
 			.map((m) => ({
 				name: m.title,
 				posterPath: m.poster,
-				url: getActorsUrl(m.slug),
+				url: getMovieUrl(m.slug),
 			}));
 
 		return {
