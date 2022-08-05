@@ -1,11 +1,23 @@
 import parse from 'html-react-parser';
 import { FC } from 'react';
 
+
+
 import MaterialIcon from '@/components/ui/icons/MaterialIcon';
+
+
 
 import { IMovie } from '@/shared/types/movies.types';
 
+
+
 import { getActorUrl, getGenreUrl } from '@/configs/url.config';
+
+
+
+import FavoriteButton from '../FavoriteButton/FavoriteButton';
+
+
 
 import styles from './Content.module.scss';
 import ContentList from './content-list/ContentList';
@@ -13,6 +25,7 @@ import ContentList from './content-list/ContentList';
 const Content: FC<{ movie: IMovie }> = ({ movie }) => {
 	return (
 		<div className={styles.content}>
+			<FavoriteButton movieId={movie._id} />
 			<h1>{movie.title}</h1>
 			<div className={styles.rating}>
 				<MaterialIcon name="MdStarRate" />

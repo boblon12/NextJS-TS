@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { FC } from 'react';
 
 import { IMovie } from '@/shared/types/movies.types';
@@ -11,6 +12,15 @@ import SubHeading from '../../ui/heading/SubHeading';
 
 import Content from './content/Content';
 
+const DynamicPlayer = dynamic(
+	() => import('@/components/ui/VideoPlayer/VideoPlayer'),
+	{ ssr: false }
+);
+
+const DynamicRateMovie = dynamic(() => import('./rate-movie/RateMovie'), {
+	ssr: false,
+});
+
 const SingleMovie: FC<{ movie: IMovie; similarMovies: IGalleryItem[] }> = ({
 	movie,
 	similarMovies,
@@ -22,10 +32,14 @@ const SingleMovie: FC<{ movie: IMovie; similarMovies: IGalleryItem[] }> = ({
 				Detail={() => <Content movie={movie} />}
 			/>
 
+			<DynamicPlayer videoSource={movie.videoUrl} slug={movie.slug} />
+
 			<div className="mt-12">
 				<SubHeading title="Similar" />
 				<Gallery items={similarMovies} />
 			</div>
+
+			<DynamicRateMovie _id={movie._id} slug={movie.slug} />
 		</Meta>
 	);
 };
