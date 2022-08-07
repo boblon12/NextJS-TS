@@ -4,10 +4,14 @@ import { axiosClassic } from 'api/interseptors';
 
 
 import { IGenreEditInput } from '@/components/screens/admin/genre/genre-edit.interface';
+import { ICollection } from '@/components/screens/collections/collections.types';
+
+
 
 import { IGenre } from '@/shared/types/movies.types';
 
 import { getGenresUrl } from '@/configs/api.config';
+
 
 export const GenreService = {
 	async getAll(searchTerm?: string) {
@@ -18,6 +22,10 @@ export const GenreService = {
 				  }
 				: {},
 		});
+	},
+
+		async getCollections() {
+		return axiosClassic.get<ICollection[]>(getGenresUrl('/collections'))
 	},
 
 	async getById(_id: string) {

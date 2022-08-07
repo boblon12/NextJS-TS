@@ -23,6 +23,7 @@ const HeadProvider: FC = ({ children }) => {
 				/>
 
 				<Favicons />
+				<link rel="manifest" href="manifest.json" />
 
 				<meta name="theme-color" content={'#181B1E'} />
 				<meta name="msapplication-navbutton-color" content={'#181B1E'} />

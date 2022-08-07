@@ -8,6 +8,8 @@ import { IMovieEditInput } from '@/components/screens/admin/movie/movie-edit.int
 
 import { IMovie } from '@/shared/types/movies.types';
 
+
+
 import { getMoviesUrl } from '@/configs/api.config';
 
 export const MovieService = {

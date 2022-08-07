@@ -1,0 +1,17 @@
+{
+	"theme_color": "#E30B13",
+	"background_color": "#191B1F",
+	"scope": "/",
+	"start_url": "/",
+	"name": "Faer Cinema",
+	"app_name": "Faer Cinema",
+	"short_name": "Faer Cinema",
+	"description": "Watch FAER CINEMA movies on TV or in your browser",
+	"icons": [
+		{
+			"src": "/favicons/apple-touch-icon-57x57.png",
+			"sizes": "57x57",
+			"type": "image/png"
+		}
+	]
+}

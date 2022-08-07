@@ -1,16 +1,26 @@
 import dynamic from 'next/dynamic';
 import { FC } from 'react';
 
+
+
 import { IMovie } from '@/shared/types/movies.types';
 
+
+
 import { Meta } from '@/utils/meta';
+
+
 
 import Banner from '../../ui/Banner/Banner';
 import Gallery from '../../ui/galery/Gallery';
 import { IGalleryItem } from '../../ui/galery/gallery.interface';
 import SubHeading from '../../ui/heading/SubHeading';
 
+
+
 import Content from './content/Content';
+import { useUpdateCountOpened } from './useUpdateCountOpened';
+
 
 const DynamicPlayer = dynamic(
 	() => import('@/components/ui/VideoPlayer/VideoPlayer'),
@@ -25,6 +35,7 @@ const SingleMovie: FC<{ movie: IMovie; similarMovies: IGalleryItem[] }> = ({
 	movie,
 	similarMovies,
 }) => {
+	useUpdateCountOpened(movie.slug);
 	return (
 		<Meta title={movie.title} description={`Watch ${movie.title}`}>
 			<Banner
@@ -34,10 +45,12 @@ const SingleMovie: FC<{ movie: IMovie; similarMovies: IGalleryItem[] }> = ({
 
 			<DynamicPlayer videoSource={movie.videoUrl} slug={movie.slug} />
 
-			<div className="mt-12">
-				<SubHeading title="Similar" />
-				<Gallery items={similarMovies} />
-			</div>
+			{similarMovies.length ? (
+				<div className="mt-12">
+					<SubHeading title="Similar" />
+					<Gallery items={similarMovies} />
+				</div>
+			) : null}
 
 			<DynamicRateMovie _id={movie._id} slug={movie.slug} />
 		</Meta>

@@ -12,6 +12,15 @@
 	> a:nth-child(3n) {
 		@apply mr-0;
 	}
+
+	@media all and (max-width: 1670px) {
+		> a {
+		@apply mr-4 animate-fade;
+	}
+		> a:nth-child(3n) {
+		@apply mr-4;
+	}
+	}
 }
 
 .button {
